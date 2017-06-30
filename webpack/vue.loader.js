@@ -1,4 +1,8 @@
 module.exports = () => {
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const isProduction = process.env.NODE_ENV === 'production';
+
     return {
         module: {
             rules: [
@@ -6,6 +10,7 @@ module.exports = () => {
                     test: /\.vue$/,
                     loader: 'vue-loader',
                     options: {
+                        extractCSS: isProduction,
                         loaders: {
                             'scss': 'vue-style-loader!css-loader!sass-loader',
                             'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
@@ -14,6 +19,9 @@ module.exports = () => {
                 }
             ]
         },
+        plugins: isProduction
+            ? [new ExtractTextPlugin({ filename: 'common.[chunkhash].css' })]
+            : [],        
         resolve: {
             alias: {
                 'vue$': 'vue/dist/vue.esm.js'

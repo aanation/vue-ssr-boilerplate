@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <ul>
+      <li><router-link to="/foo">foo</router-link></li>
+      <li><router-link to="/bar">bar</router-link></li>
+    </ul>
+    <router-view></router-view>
     <img src="./assets/logo.png">
     <h1></h1>
     <h2>Essential Links</h2>
