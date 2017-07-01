@@ -12,7 +12,7 @@ const OPTIONS = require('./webpack.options').spa; //импортим объек�
 
 module.exports =  merge([
 	{
-		entry: path.join(OPTIONS.paths.source, 'main.js'), 
+		entry: path.join(OPTIONS.paths.source, 'app/app.js'), 
 		output: {
 			path: OPTIONS.paths.build,
 			publicPath: OPTIONS.publicPath,
@@ -21,13 +21,13 @@ module.exports =  merge([
 		resolve: {
 			extensions: ['.js', '.json'],//импорт без рассширения
 			alias: {
-				'@': OPTIONS.paths.source //алис для корня
+				'@': path.join(OPTIONS.paths.source, 'app') //алис для корня
 			}
 		},			
 		plugins: [
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
-				template:  path.join(OPTIONS.paths.source, '../index.html')
+				template:  path.join(OPTIONS.paths.source, 'index.html')
 			})
 		],
 		performance: {

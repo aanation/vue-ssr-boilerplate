@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge');
 
-/* Модули конфига*/
+/* Модули конфига */
 const vueLoader = require('./webpack/vue.loader'); 
 const babel = require('./webpack/babel.js');
 const images = require('./webpack/images');

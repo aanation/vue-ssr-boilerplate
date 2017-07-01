@@ -11,6 +11,7 @@ const extractCSS = require('./webpack/css.extract');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const OPTIONS = require('./webpack.options').spa; //импортим объект с опциями для классического спа 
 
@@ -38,7 +39,7 @@ module.exports = () => {
 					}),	
 					new HtmlWebpackPlugin({
 						filename: 'index.html',
-						template:  path.join(OPTIONS.paths.source, '../index.html'),
+						template:  path.join(OPTIONS.paths.source, 'index.html'),
 						inject: true,
 						minify: {
 							removeComments: true,
@@ -65,7 +66,14 @@ module.exports = () => {
 					}),																			
 					new webpack.LoaderOptionsPlugin({
 						minimize: true
-					})								
+					}),
+					new CopyWebpackPlugin([
+						{
+							from: path.join(__dirname, 'static'),
+							to: OPTIONS.paths.build,
+							ignore: ['.*']
+						}
+					])												
 				]					
 			}
 		]);
