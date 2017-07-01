@@ -18,15 +18,13 @@ const isProduction = process.env.NODE_ENV === 'production';
                     }
                 }
             ]
-        },
-        plugins: isProduction
-            ? [new ExtractTextPlugin({ filename: 'common.[chunkhash].css' })]
-            : [],        
-        resolve: {
-            alias: {
-                'vue$': 'vue/dist/vue.esm.js'
-            }
-        },
+        },      
+		resolve: {
+			extensions: ['.vue'],
+			alias: {
+				'vue$': 'vue/dist/vue.esm.js'
+			}
+		},	
 	    devtool: '#eval-source-map'              
     }
 }; 
