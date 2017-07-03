@@ -15,7 +15,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const OPTIONS = require('./webpack.options').spa; //импортим объект с опциями для классического спа 
 
-const baseConfig = require('./webpack.spa.base');
+const baseConfig = require('./webpack.spa.base.config');
 
 module.exports = () => {
 
@@ -87,7 +87,7 @@ module.exports = () => {
 					plugins: [
 						new webpack.DefinePlugin({
 							'process.env': {
-								NODE_ENV: '"production"'
+								NODE_ENV: '"development"'
 							}
 						}),
 						new webpack.HotModuleReplacementPlugin(),
@@ -102,4 +102,3 @@ module.exports = () => {
 		]);
 	}
 };
-

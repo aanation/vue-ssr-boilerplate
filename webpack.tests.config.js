@@ -4,7 +4,7 @@ const merge = require('webpack-merge');
 const sass = require('./webpack/sass');
 const css = require('./webpack/css');
 
-const baseConfig = require('./webpack.spa.base');
+const baseConfig = require('./webpack.spa.base.config');
 delete baseConfig.plugins; 
 
 const webpackConfig = merge([

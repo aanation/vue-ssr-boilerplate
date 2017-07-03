@@ -21,8 +21,8 @@ module.exports =  merge([
 		resolve: {
 			extensions: ['.js', '.json'],//импорт без рассширения
 			alias: {
-				'@': path.join(OPTIONS.paths.source, 'app') //алис для корня
-			}
+				'@': path.join(OPTIONS.paths.source, 'app'), //алис для корня
+			}	
 		},			
 		plugins: [
 			new HtmlWebpackPlugin({

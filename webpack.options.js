@@ -8,5 +8,12 @@ module.exports = {
             source: path.join(__dirname, 'source'),
             build: path.join(__dirname, 'build')	
         }        
-    }
+    },
+    ssr: {
+        publicPath: "/",        
+        paths: {
+            source: path.join(__dirname, 'source'),
+            build: path.join(__dirname, 'build')	
+        }        
+    }    
 };
