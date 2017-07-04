@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import foo from '@/components/foo/foo'
+const foo = resolve => require(['@/components/foo/foo'], resolve)
 
 Vue.use(Router)
 
-export default function createRouter() {
+export function createRouter() {
   return new Router({
     mode: 'history',
     routes: [
@@ -15,9 +15,9 @@ export default function createRouter() {
         component: Hello
       },
       {
-        path: 'foo/:id', 
+        path: '/foo/:id', 
         name: 'Foo',
-        component: 'foo'
+        component: foo
       }
     ]
   })

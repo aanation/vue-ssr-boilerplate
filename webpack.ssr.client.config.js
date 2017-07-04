@@ -2,79 +2,45 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge');
 
+const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 /* Модули конфига*/
-const vueLoader = require('./webpack/vue.loader'); 
-const babel = require('./webpack/babel.js');
-const images = require('./webpack/images');
-const devServer = require('./webpack/devserver'); 
-const UglifyJsPlugin = require('./webpack/js.uglify');
-const sass = require('./webpack/sass'); 
-const css = require('./webpack/css');
-const extractCSS = require('./webpack/css.extract');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const baseConfig = require('./webpack.ssr.base.config');
+const OPTIONS = require('./webpack.options').ssr;
 
+const config = merge([
+    baseConfig(), 
+    {
+        entry: OPTIONS.paths.clientEntry, 
+        plugins: [
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor',
+                minChunks: function (module, count) {
+                    return (
+                    module.resource &&
+                    /\.js$/.test(module.resource) &&
+                    module.resource.indexOf(
+                        path.join(__dirname, '../node_modules')
+                    ) === 0
+                    )
+                }
+            }),	
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'manifest',
+                chunks: ['vendor'],
+                minChunks: Infinity
+            }),
+            new VueSSRClientPlugin(),
+            new CopyWebpackPlugin([
+                {
+                    from: path.join(__dirname, 'static'),
+                    to: path.join(OPTIONS.paths.build, 'static'),
+                    ignore: ['.*']
+                }
+            ])                  
+        ]        
+    }
+]);
 
-const OPTIONS = {
-	devserverPort: 8080, 
-	paths: {
-		source: path.join(__dirname, 'source'),
-		build: path.join(__dirname, 'build')		
-	}
-}
-
-const commonConfig = merge([
-	{
-		entry: {
-			'client': path.join(OPTIONS.paths.source, 'enrty-client.js')
-		},
-		output: {
-			path: OPTIONS.paths.build,
-			publicPath: '/build',
-			filename: 'js/[name].js'
-		},
-		plugins: [
-			new HtmlWebpackPlugin({
-				filename: 'index.html',
-				template:  path.join(OPTIONS.paths.source, 'index.html'),
-				chunks: ['client']
-			})			
-		],
-		performance: {
-			hints: false
-		}	
-	}, vueLoader(), babel(), images()
-]); 
-
-module.exports = () => {
-
-	let env = process.env.NODE_ENV || "development";
-
-	if (env === 'production') {
-		return merge([
-			commonConfig, UglifyJsPlugin(), extractCSS(),
-			{
-				devtool: '#source-map',
-				plugins: [
-					new webpack.DefinePlugin({
-						'process.env': {
-							NODE_ENV: '"production"'
-						}
-					}),					
-					new webpack.LoaderOptionsPlugin({
-						minimize: true
-					})								
-				]					
-			}
-		]);
-	} 
-
-	if (env === "development") {
-		return merge([
-			commonConfig,
-			devServer(OPTIONS.devserverPort),
-			sass(), 
-			css()
-		]);
-	}
-};
-
+module.exports = config;

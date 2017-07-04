@@ -2,61 +2,31 @@ const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge');
 
-/* Модули конфига */
-const vueLoader = require('./webpack/vue.loader'); 
-const babel = require('./webpack/babel.js');
-const images = require('./webpack/images');
-const UglifyJsPlugin = require('./webpack/js.uglify');
-const extractCSS = require('./webpack/css.extract');
-const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
 const nodeExternals = require('webpack-node-externals');
+const VueSSRServerPlugin = require('vue-server-renderer/server-plugin'); 
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
-const OPTIONS = {
-	paths: {
-		source: path.join(__dirname, 'source'),
-		build: path.join(__dirname, 'build')		
-	}
-}
+const baseConfig = require('./webpack.ssr.base.config'); 
 
-const commonConfig = merge([
+const OPTIONS = require('./webpack.options').ssr;
+
+module.exports =  merge([
+	baseConfig(), 
 	{
-		target: 'node', 
-		entry: {
-			'server': path.join(OPTIONS.paths.source, 'enrty-server.js')
-		},
+		entry: OPTIONS.paths.serverEntry,
+		target: 'node',
+		devtool: 'source-map',
 		output: {
-			path: OPTIONS.paths.build,
-			publicPath: '/build',
-			libraryTarget: 'commonjs2',
-			filename: 'js/[name].js'
+   			libraryTarget: 'commonjs2'
 		},
-		performance: {
-			hints: false
-		}	
-	}, vueLoader(), babel(), images()
+		externals: nodeExternals({
+		//можнл добавить больше типов файлов, например сырые *.vue файлы
+		//нужно также указывать белый список зависимостей изменяющих `global` (напр полифиллы)
+			whitelist: /\.css$/
+  		}),
+		plugins: [
+			new VueSSRServerPlugin(),
+			new FriendlyErrorsPlugin()
+		]		  
+	}
 ]); 
-
-module.exports = () => {
-	return merge([
-		commonConfig, UglifyJsPlugin(), extractCSS(),
-		{
-			devtool: '#source-map',
-			externals: nodeExternals({
-				whitelist: /\.css$/
-			}),			
-			plugins: [
-				new webpack.DefinePlugin({
-					'process.env': {
-						NODE_ENV: '"production"',
-						'process.env.VUE_ENV': '"server"'						
-					}
-				}),	
-				new VueSSRServerPlugin(),				
-				new webpack.LoaderOptionsPlugin({
-					minimize: true
-				})								
-			]					
-		}
-	]);
-};
-

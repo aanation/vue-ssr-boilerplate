@@ -1,6 +1,6 @@
 {
   "name": "vue-ssr",
-  "description": "vue webpack and express ssr-server",
+  "description": "vue webpack and express ssr-server by 42px",
   "version": "1.0.0",
   "author": "42px <2822698@gmail.com>",
   "private": true,
@@ -10,7 +10,8 @@
     "unit": "cross-env BABEL_ENV=test karma start tests/unit/karma.conf.js --single-run",
     "tests": "npm run unit",
     "build-client": "cross-env NODE_ENV=production webpack --config webpack.ssr.client.config.js  --progress --hide-modules",
-    "build-server": "cross-env NODE_ENV=production webpack --config webpack.ssr.server.config.js  --progress --hide-modules"
+    "build-server": "cross-env NODE_ENV=production webpack --config webpack.ssr.server.config.js  --progress --hide-modules",
+    "render-server": "cross-env node render-server/index.js"
   },
   "dependencies": {
     "chai": "^4.0.2",

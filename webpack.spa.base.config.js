@@ -12,11 +12,12 @@ const OPTIONS = require('./webpack.options').spa; //импортим объек�
 
 module.exports =  merge([
 	{
-		entry: path.join(OPTIONS.paths.source, 'app/app.js'), 
+		entry: path.join(OPTIONS.paths.source, 'entry-client.js'), 
 		output: {
 			path: OPTIONS.paths.build,
 			publicPath: OPTIONS.publicPath,
-			filename: 'js/[name].js'
+            filename: 'js/[name].[hash].js',
+			chunkFilename: 'js/[id].[hash].js'	
 		},	
 		resolve: {
 			extensions: ['.js', '.json'],//импорт без рассширения
@@ -27,7 +28,7 @@ module.exports =  merge([
 		plugins: [
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
-				template:  path.join(OPTIONS.paths.source, 'index.html')
+				template:  path.join(OPTIONS.paths.source, 'index.spa.html')
 			})
 		],
 		performance: {

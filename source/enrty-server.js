@@ -1,11 +1,10 @@
-import { createApp } from './app';
+import { createApp } from './app/app.js';
 
 
 export default (context) => {
     return new Promise((resolve, reject) => {
-        const { app, router } = createApp(); 
+        const { app, router, store } = createApp(); 
         router.push(context.url);
-
         router.onReady(() => {
             const matchedComponents = router.getMatchedComponents();
             //получаем все компоненты заматченные по этому роуту

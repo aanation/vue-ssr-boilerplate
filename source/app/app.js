@@ -1,9 +1,17 @@
-import Vue from 'vue'
-import App from './App'
-import { createRouter } from './router';
-import { createStore } from './store';
+import Vue from 'vue';
+import App from './App';
+import {createRouter}  from './router/';
+import {createStore}  from './store/';
 import { sync } from 'vuex-router-sync';
 
+//подключаем клиентские примеси 
+import beforeMount from './mixins/before-mount';
+import beforeRouteUpdate from './mixins/before-route-update';
+Vue.use(beforeMount);
+Vue.use(beforeRouteUpdate);
+
+//пример "ленивого" импорта jquery 
+const jquery = resolve => require(['jquery'], resolve);
 
 
 export function createApp()  {

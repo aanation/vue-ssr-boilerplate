@@ -1,4 +1,4 @@
-import { fetchData } from '../../api';
+import {fetchItem}  from '../../api';
 
 export default {
     namespaced: true,
@@ -7,7 +7,7 @@ export default {
     }),
     actions: {
         fetchData( { commit }, id) {
-            return fetchData(id).then(data => {
+            return fetchItem(id).then(data => {
                 commit('setData', data);
             })
         }
