@@ -1,6 +1,8 @@
 const express = require('express');
 const http = require('http');
 const path = require('path');
+const proxy = require('http-proxy-middleware');
+const proxyTable = require('../webpack.options').ssr.proxy; 
 
 const template = require('fs').readFileSync(path.join(__dirname, '../source/index.html'), 'utf-8');
 const serverBundle = require('../build/vue-ssr-server-bundle.json');
@@ -13,6 +15,9 @@ const renderer = require('vue-server-renderer').createBundleRenderer(serverBundl
 });
 
 const app = express();
+
+//проксируем запросы к апи 
+app.use(proxyTable.context, proxy({target: proxyTable.target}));
 
 app.use('/', express.static(path.join(__dirname, '../build')));
 

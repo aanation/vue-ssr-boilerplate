@@ -1,9 +1,13 @@
+import {createAPI} from 'create-api'; 
+
+const api = createAPI(); 
+
 
 //симуляция апи. Сюда можно подключить axios или другой http-клиент и фигачить роуты 
-export function fetchItem (id) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve('someData');
-            }, 1000);
-        });
+export async function fetchItem (id) {
+    try {
+        return 'someData'; 
+    } catch(err) {
+        throw err;
+    }
 } 

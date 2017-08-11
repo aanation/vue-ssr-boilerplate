@@ -13,6 +13,11 @@ const config = merge([
     baseConfig(), 
     {
         entry: OPTIONS.paths.clientEntry, 
+        resolve: {
+            alias: {
+                'create-api': './create-api-client.js'
+            }
+        },        
         plugins: [
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendor',

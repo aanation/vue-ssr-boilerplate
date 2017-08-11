@@ -23,6 +23,7 @@ module.exports =  merge([
 			extensions: ['.js', '.json'],//импорт без рассширения
 			alias: {
 				'@': path.join(OPTIONS.paths.source, 'app'), //алис для корня
+				'create-api': './create-api-client.js'
 			}	
 		},			
 		plugins: [
@@ -36,6 +37,6 @@ module.exports =  merge([
 		}	
 	}, 
 	vueLoader(), 
-	urlLoader(OPTIONS.paths), 
+	urlLoader(), 
 	babel(), 
 ]); 

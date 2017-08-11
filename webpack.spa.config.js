@@ -12,6 +12,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const proxy = require('./webpack/proxy'); 
 
 const OPTIONS = require('./webpack.options').spa; //импортим объект с опциями для классического спа 
 
@@ -82,6 +83,9 @@ module.exports = () => {
 	if (env === "development") {
 		return merge([
 			baseConfig,
+			{
+				devServer: proxy(OPTIONS.proxy)
+			},
 			{
 				  devtool: '#cheap-module-eval-source-map',
 					plugins: [

@@ -26,7 +26,7 @@ const commonConfig = merge([
 		}		
     }, 
     vueLoader(), 
-	urlLoader(OPTIONS.paths), 
+	urlLoader(), 
 	babel()
 ]);
 

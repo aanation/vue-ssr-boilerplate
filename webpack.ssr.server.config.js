@@ -14,6 +14,11 @@ module.exports =  merge([
 	baseConfig(), 
 	{
 		entry: OPTIONS.paths.serverEntry,
+        resolve: {
+            alias: {
+                'create-api': './create-api-server.js'
+            }
+        },  		
 		target: 'node',
 		devtool: 'source-map',
 		output: {
