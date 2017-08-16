@@ -8,7 +8,7 @@ const vueLoader = require('./webpack/vue.loader');
 const babel = require('./webpack/babel.js');
 const urlLoader = require('./webpack/url.loader');
 
-const OPTIONS = require('./webpack.options').spa; //импортим объект с опциями для классического спа 
+const OPTIONS = require('./config.js').spa; //импортим объект с опциями для классического спа 
 
 module.exports =  merge([
 	{

@@ -1,11 +1,10 @@
-module.exports = (paths) => {
+module.exports = () => {
 
     return {
         module: {
             rules: [
                 {
-                    test: /\.css$/,
-                    include: paths,               
+                    test: /\.css$/,             
                     use: [
                         'style-loader',
                         'css-loader'

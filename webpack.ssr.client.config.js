@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 /* Модули конфига*/
 const baseConfig = require('./webpack.ssr.base.config');
-const OPTIONS = require('./webpack.options').ssr;
+const OPTIONS = require('./config.js').ssr;
 
 const config = merge([
     baseConfig(), 

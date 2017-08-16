@@ -14,7 +14,7 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const proxy = require('./webpack/proxy'); 
 
-const OPTIONS = require('./webpack.options').spa; //импортим объект с опциями для классического спа 
+const OPTIONS = require('./config.js').spa; //импортим объект с опциями для классического спа 
 
 const baseConfig = require('./webpack.spa.base.config');
 

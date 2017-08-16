@@ -1,14 +1,17 @@
 const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
 /*Модули конфига */
 const vueLoader = require('./webpack/vue.loader'); 
 const babel = require('./webpack/babel.js');
 const urlLoader = require('./webpack/url.loader');
-const OPTIONS = require('./webpack.options').ssr;
+const OPTIONS = require('./config.js').ssr;
 const UglifyJsPlugin = require('./webpack/js.uglify');
 const extractCSS = require('./webpack/css.extract');
+const sass = require('./webpack/sass');
+const css = require('./webpack/css');
 
 const commonConfig = merge([
     {

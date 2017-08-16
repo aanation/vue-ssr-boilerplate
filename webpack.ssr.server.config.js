@@ -8,7 +8,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
 const baseConfig = require('./webpack.ssr.base.config'); 
 
-const OPTIONS = require('./webpack.options').ssr;
+const OPTIONS = require('./config.js').ssr;
 
 module.exports =  merge([
 	baseConfig(), 
