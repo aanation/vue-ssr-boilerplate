@@ -2,5 +2,5 @@
   "presets": [
     ["env", { "modules": false }], "es2015"
   ],
-  "plugins": ["transform-async-to-generator", "transform-runtime"] 
+  "plugins": ["transform-async-to-generator", "transform-runtime", "syntax-dynamic-import"] 
 }

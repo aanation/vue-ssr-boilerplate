@@ -12,13 +12,19 @@ const OPTIONS = require('./config.js').ssr;
 const config = merge([
     baseConfig(), 
     {
-        entry: OPTIONS.paths.clientEntry, 
+        entry: {
+            app: OPTIONS.paths.clientEntry, 
+        },
         resolve: {
             alias: {
                 'create-api': './create-api-client.js'
             }
         },        
         plugins: [
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+                'process.env.VUE_ENV': '"client"'
+            }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendor',
                 minChunks: function (module, count) {

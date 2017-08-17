@@ -10,6 +10,7 @@ const isProduction = process.env.NODE_ENV === 'production';
                     test: /\.vue$/,
                     loader: 'vue-loader',
                     options: {
+                        preserveWhitespace: false,
                         extractCSS: isProduction,
                         loaders: {
                             'scss': 'vue-style-loader!css-loader!sass-loader',

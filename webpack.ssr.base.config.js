@@ -26,7 +26,7 @@ const commonConfig = merge([
 			alias: {
 				'@': path.join(OPTIONS.paths.source, 'app'), //алис для корня
 			}	
-		}		
+		}
     }, 
     vueLoader(), 
 	urlLoader(), 
