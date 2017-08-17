@@ -1,8 +1,9 @@
 {
-  "name": "vue-ssr",
+  "name": "vue-ssr-frontend'",
   "description": "vue webpack and express ssr-server by 42px",
   "version": "1.0.0",
   "author": "42px <2822698@gmail.com>",
+  "main": "render-server/server.js",
   "private": true,
   "scripts": {
     "dev-spa": "cross-env NODE_ENV=development webpack-dev-server --config webpack.spa.config.js --open --hot",
