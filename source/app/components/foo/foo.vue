@@ -10,9 +10,10 @@
 
     export default {
         name: "foo", 
-        asyncData ({ store, route }) {
-            //регистрариуем компонент 
+        storeRegister({store}) {
             store.registerModule('foo', fooStore);
+        }, 
+        asyncData ({ store, route }) {
             //фетчим данные
             return store.dispatch('foo/fetchData', route.params.id);
         },

@@ -5,9 +5,7 @@ import {createStore}  from './store/';
 import { sync } from 'vuex-router-sync';
 
 //подключаем клиентские примеси 
-import beforeMount from './mixins/before-mount';
 import beforeRouteUpdate from './mixins/before-route-update';
-Vue.use(beforeMount);
 Vue.use(beforeRouteUpdate);
 
 //пример "ленивого" импорта jquery 
