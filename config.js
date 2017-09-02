@@ -24,7 +24,7 @@ module.exports = {
         paths: {
             source: path.join(__dirname, 'source'),
             build: path.join(__dirname, 'dist'),
-            serverEntry: path.join(__dirname, 'source/enrty-server.js'),
+            serverEntry: path.join(__dirname, 'source/entry-server.js'),
             clientEntry: path.join(__dirname, 'source/entry-client.js'),
         }        
     }    
