@@ -1,6 +1,7 @@
 import { createApp } from './app/app.js';
 import { preloadData } from './app/store';
 
+let preload = typeof preloadData === "function" ? preloadData : () => { return Promise.resolve() }; 
 
 export default (context) => {
     return new Promise((resolve, reject) => {
@@ -9,7 +10,7 @@ export default (context) => {
         router.push(context.url);
         router.onReady(() => {
             //выполнение экшенов предзагрузки глобального состояния приложения
-            preloadData(store)
+            preload(store)
                 .then(() => {
                     const matchedComponents = router.getMatchedComponents();
                     //получаем все компоненты заматченные по этому роуту

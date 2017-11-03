@@ -1,3 +1,5 @@
+const path = require('path'); 
+
 module.exports = (paths) => {
     const isProduction = process.env.NODE_ENV === 'production';
 
@@ -10,6 +12,7 @@ module.exports = (paths) => {
                     use: [
                         'style-loader',
                         'css-loader', 
+                        'postcss-loader',
                         'sass-loader'
                     ]
                 }

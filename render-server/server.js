@@ -6,9 +6,8 @@ const compression = require('compression');
 const resolve = file => path.resolve(__dirname, file);
 const { createBundleRenderer } = require('vue-server-renderer');
 
-module.exports = function({useProxy=true, proxyTarget=null}) {
+module.exports = function({useProxy=true, proxyTarget=null, useMicroCache=false}) {
   const isProd = process.env.NODE_ENV === 'production'; 
-  const useMicroCache = process.env.MICRO_CACHE !== 'false';
   const serverInfo =
     `express/${require('express/package.json').version} ` +
     `vue-server-renderer/${require('vue-server-renderer/package.json').version}`;

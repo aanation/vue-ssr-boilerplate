@@ -10,7 +10,7 @@ const isProduction = process.env.NODE_ENV === 'production';
         let loaders =  isProduction ? 
             {
                 scss: ExtractTextPlugin.extract({
-                    use: ['css-loader','resolve-url-loader','sass-loader', {
+                    use: ['css-loader','resolve-url-loader','postcss-loader','sass-loader', {
                         loader: 'sass-resources-loader',
                         options: {
                           resources: path.join(source, 'app/variables.scss')
@@ -19,12 +19,12 @@ const isProduction = process.env.NODE_ENV === 'production';
                     fallback: 'vue-style-loader'
                 }),
                 sass: ExtractTextPlugin.extract({
-                    use: 'css-loader!resolve-url-loader!sass-loader?indentedSyntax',
+                    use: 'css-loader!resolve-url-loader!postcss-loader!sass-loader?indentedSyntax',
                     fallback: 'vue-style-loader'
                 })
             } : 
             {
-                'scss': ['vue-style-loader','css-loader','resolve-url-loader','sass-loader',
+                'scss': ['vue-style-loader','css-loader','resolve-url-loader','postcss-loader','sass-loader',
                     {
                         loader: 'sass-resources-loader',
                         options: {
@@ -32,7 +32,7 @@ const isProduction = process.env.NODE_ENV === 'production';
                         }
                     }
                 ],
-                'sass': 'vue-style-loader!css-loader!resolve-url-loader!sass-loader?indentedSyntax'
+                'sass': 'vue-style-loader!css-loader!resolve-url-loader!postcss-loader!sass-loader?indentedSyntax'
             };
         return loaders;
     }

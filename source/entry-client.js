@@ -1,11 +1,11 @@
 import { createApp } from './app/app.js';
 
-
 const { app, router, store } = createApp();
 import { preloadData } from './app/store';
 import Logger from './app/logger';
 const logger = new Logger(); 
 
+let preload = typeof preloadData === "function" ? preloadData : () => { return Promise.resolve() }; 
 
 function beforeResolve(to, from, next) {
     const matched = router.getMatchedComponents(to)
@@ -58,7 +58,7 @@ if (window.__INITIAL_STATE__) {
     router.onReady(() => {
         //добавляем хуку beforeResolve для вызова асинкДата при загрузке обычного спа
         router.beforeResolve(beforeResolve);
-        preloadData(store)
+        preload(store)
             .then(() => {
                 //после предварительной загрузки данных вызываем функцию асинк дата заматченного компонента 
                 const matchedComponents = router.getMatchedComponents();

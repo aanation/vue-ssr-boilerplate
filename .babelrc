@@ -1,6 +1,4 @@
 {
-  "presets": [
-    "es2015"
-  ],
+  "presets": ["env"],
   "plugins": ["transform-async-to-generator", "transform-runtime", "syntax-dynamic-import"] 
 }
