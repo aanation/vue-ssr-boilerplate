@@ -1,6 +1,6 @@
-import {createAPI} from 'create-api'; 
+import {createAxios} from 'create-axios'; 
 
-const api = createAPI(); 
+const axios = createAxios(); 
 
 
 //симуляция апи. Сюда можно подключить axios или другой http-клиент и фигачить роуты 

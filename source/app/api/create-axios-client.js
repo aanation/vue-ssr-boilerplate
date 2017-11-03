@@ -1,5 +1,5 @@
 import axios from 'axios'; 
 
-export function createAPI(config={}) {
+export function createAxios(config={}) {
     return axios.create(config);
 }

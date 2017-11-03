@@ -17,7 +17,7 @@ const config = merge([
         },
         resolve: {
             alias: {
-                'create-api': './create-api-client.js'
+                'create-axios': './create-axios-client.js'
             }
         },        
         plugins: [

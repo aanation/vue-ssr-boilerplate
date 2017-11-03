@@ -5,11 +5,11 @@ module.exports = () => {
         module: {
             rules: [
                 {
-                        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-                        loader: 'url-loader',
-                        options: {
-                        limit: 10000,
-                        outputPath: 'img/',
+                    test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                    exclude: /node_modules/,
+                    loader: 'file-loader',
+                    options: {
+                        outputPath: 'fonts/', 
                         name: '[name].[ext]'
                     }
                 }

@@ -7,6 +7,7 @@ const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 const vueLoader = require('./webpack/vue.loader'); 
 const babel = require('./webpack/babel.js');
 const urlLoader = require('./webpack/url.loader');
+const fileLoader = require('./webpack/file.loader');
 const OPTIONS = require('./config.js').ssr;
 const UglifyJsPlugin = require('./webpack/js.uglify');
 const extractCSS = require('./webpack/css.extract');
@@ -17,7 +18,7 @@ const commonConfig = merge([
     {
         output: {
             path: OPTIONS.paths.build,
-            publicPath: OPTIONS.paths.publicPath,
+            publicPath: OPTIONS.publicPath,
             filename: 'js/[name].[chunkhash].js',
 			chunkFilename: 'js/[id].[chunkhash].js'			
         },
@@ -28,8 +29,9 @@ const commonConfig = merge([
 			}	
 		}
     }, 
-    vueLoader(), 
+	vueLoader(OPTIONS.paths), 
 	urlLoader(), 
+	fileLoader(), 
 	babel()
 ]);
 

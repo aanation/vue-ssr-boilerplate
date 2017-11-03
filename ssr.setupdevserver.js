@@ -37,7 +37,7 @@ module.exports = function setupDevServer (app, cb) {
 		},
     noInfo: true
   })
-  app.use(devMiddleware)
+  app.use(devMiddleware); 
   clientCompiler.plugin('done', stats => {
     stats = stats.toJson()
     stats.errors.forEach(err => console.error(err))

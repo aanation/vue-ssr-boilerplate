@@ -16,7 +16,7 @@ module.exports =  merge([
 		entry: OPTIONS.paths.serverEntry,
         resolve: {
             alias: {
-                'create-api': './create-api-server.js'
+                'create-axios': './create-axios-server.js'
             }
         },  		
 		target: 'node',

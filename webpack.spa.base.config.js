@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const vueLoader = require('./webpack/vue.loader'); 
 const babel = require('./webpack/babel.js');
 const urlLoader = require('./webpack/url.loader');
+const fileLoader = require('./webpack/file.loader');
 
 const OPTIONS = require('./config.js').spa; //импортим объект с опциями для классического спа 
 
@@ -23,7 +24,7 @@ module.exports =  merge([
 			extensions: ['.js', '.json'],//импорт без рассширения
 			alias: {
 				'@': path.join(OPTIONS.paths.source, 'app'), //алис для корня
-				'create-api': './create-api-client.js'
+				'create-axios': './create-axios-client.js'
 			}	
 		},			
 		plugins: [
@@ -36,7 +37,8 @@ module.exports =  merge([
 			hints: false
 		}	
 	}, 
-	vueLoader(), 
+	vueLoader(OPTIONS.paths), 
 	urlLoader(), 
+	fileLoader(), 
 	babel(), 
 ]); 
