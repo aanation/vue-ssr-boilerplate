@@ -81,7 +81,7 @@ app.listen(port, () => {
 Можно также передать свой сервер и порт для проксирования:
 
 ```javascript
-const renderServer = require('vue-ssr-frontend'');
+const renderServer = require('vue-ssr-frontend');
 const app = renderServer({
     useProxy: true,
     proxyTarget: 'http://localhost:5656'
@@ -90,7 +90,7 @@ const app = renderServer({
 
 или переложить проксирование на внешний front-сервер: 
 ```javascript
-const renderServer = require('vue-ssr-frontend'');
+const renderServer = require('vue-ssr-frontend');
 const app = renderServer({
     useProxy: false, //рендер-сервер не проксирует запросы к апи
     useMicroCache: false 
