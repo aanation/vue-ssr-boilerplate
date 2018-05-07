@@ -1,7 +1,7 @@
 import axiosLib from 'axios'; 
 
 const axios = axiosLib.create({
-    baseURL: BACKEND_URL // предоставляется приложению извне на этапе сборки        
+    baseURL: BACKEND_BASE_URL // предоставляется приложению извне на этапе сборки        
 }); 
 
 

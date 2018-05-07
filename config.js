@@ -4,7 +4,8 @@ require('dotenv').config({
 });
 
 const env = {
-    'BACKEND_URL': JSON.stringify(process.env.BACKEND_URL)
+    'BACKEND_URL': JSON.stringify(process.env.BACKEND_URL),
+    'BACKEND_BASE_URL': JSON.stringify(process.env.BACKEND_BASE_URL)
 }; 
 
 module.exports = {
