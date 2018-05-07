@@ -23,15 +23,15 @@ module.exports =  merge([
 		resolve: {
 			extensions: ['.js', '.json'],//импорт без рассширения
 			alias: {
-				'@': path.join(OPTIONS.paths.source, 'app'), //алис для корня
-				'create-axios': './create-axios-client.js'
+				'@': path.join(OPTIONS.paths.source, 'app') //алис для корня
 			}	
 		},			
 		plugins: [
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
 				template:  path.join(OPTIONS.paths.source, 'index.spa.html')
-			})
+			}),
+			new webpack.DefinePlugin(OPTIONS.env)
 		],
 		performance: {
 			hints: false

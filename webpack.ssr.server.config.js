@@ -13,12 +13,7 @@ const OPTIONS = require('./config.js').ssr;
 module.exports =  merge([
 	baseConfig(), 
 	{
-		entry: OPTIONS.paths.serverEntry,
-        resolve: {
-            alias: {
-                'create-axios': './create-axios-server.js'
-            }
-        },  		
+		entry: OPTIONS.paths.serverEntry, 		
 		target: 'node',
 		devtool: 'source-map',
 		output: {

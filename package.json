@@ -19,6 +19,7 @@
   "dependencies": {
     "compression": "^1.7.1",
     "cross-env": "^5.0.5",
+    "dotenv": "^5.0.1",
     "express": "^4.15.4",
     "http-proxy-middleware": "^0.17.4",
     "lru-cache": "^4.1.1",

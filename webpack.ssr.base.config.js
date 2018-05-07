@@ -54,11 +54,11 @@ module.exports = () => {
 			{
 				  devtool: '#cheap-module-eval-source-map',
 					plugins: [
-						new webpack.DefinePlugin({
+						new webpack.DefinePlugin(Object.assign({
 							'process.env': {
 								NODE_ENV: '"devlopment"'
 							}
-						}),
+						}, OPTIONS.env)),
 						new FriendlyErrorsPlugin()
 					],				  
 

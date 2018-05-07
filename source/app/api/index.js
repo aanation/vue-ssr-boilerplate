@@ -1,9 +1,11 @@
-import {createAxios} from 'create-axios'; 
+import axiosLib from 'axios'; 
 
-const axios = createAxios(); 
+const axios = axiosLib.create({
+    baseURL: BACKEND_URL // предоставляется приложению извне на этапе сборки        
+}); 
 
 
-//симуляция апи. Сюда можно подключить axios или другой http-клиент и фигачить роуты 
+// симуляция апи
 export async function fetchItem (id) {
     try {
         return 'someData'; 

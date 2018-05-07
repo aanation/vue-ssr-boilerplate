@@ -14,12 +14,7 @@ const config = merge([
     {
         entry: {
             app: OPTIONS.paths.clientEntry, 
-        },
-        resolve: {
-            alias: {
-                'create-axios': './create-axios-client.js'
-            }
-        },        
+        },     
         plugins: [
             new webpack.DefinePlugin({
                 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
